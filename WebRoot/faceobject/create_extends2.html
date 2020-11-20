@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>继承关系</title>
+</head>
+<body>
+	<script>
+	
+		//借用父构造函数继承属性
+		//1.父构造函数
+		function Father(uname,age){
+			// this指向父构造函数的对象实例
+			this.uname = uname;
+			this.age = age;
+		}
+		
+		Father.prototype.money = function(){
+			console.log(100000);
+		}
+		
+		function Son(uname,age){
+			//this 指向子构造函数的对象实例
+			 Father.call(this,username,age);//把父构造函数中的this改成了 子构造函数中的 this
+		}
+		
+		
+		var son = new Son("刘德华",19);
+		console.log(son);//这样直接打印 son 的时候呢，里面是没有这个 money方法的，因为指向的是构造方法
+		
+		/*
+			子构造函数 调用 父构造函数的 this 把 Father 里面的 this 指向 Son中的
+		*/
+	</script>
+   
+</body>
+
+</html>
